@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch, HashRouter as Router, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import HomeAlt from './pages/HomeAlt';
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-      <Nav />
+        <Nav />
         <Switch>
           <Route exact path='/' component={HomeAlt} />
           <Route exact path='/about' component={About} />
