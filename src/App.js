@@ -7,6 +7,7 @@ import About from './pages/About'
 import Events from './pages/Events';
 import Achievements from './pages/Achievements';
 import Project from './pages/Project';
+import Resources from "./pages/Resources";
 import Team from './pages/Team';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path='/about' component={About} />
           <Route exact path='/events' component={Events} />
           <Route exact path='/projects' component={Project} />
+          <Route exact path='/resources' component={Resources} />
           <Route exact path='/achievements' component={Achievements} />
           <Route exact path='/team' component={Team} />
         </Switch>
