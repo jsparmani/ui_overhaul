@@ -15,6 +15,7 @@ import Test from "../assets/undraw_scrum_board_cesn.svg";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import ProjectImg from '../assets/undraw_code_typing_7jnv.svg';
 
 import axios from "axios";
 
@@ -125,7 +126,7 @@ const ProjectsAlt = () => {
             style={{ paddingTop: "100px" }}
           >
             <img
-              src={Events}
+              src={ProjectImg}
               alt="event_img"
               height="50%"
               width="120%"
@@ -142,7 +143,7 @@ const ProjectsAlt = () => {
                     <CardMedia
                       className={classes.media}
                       image={Test}
-                      title="Event"
+                      title="Project"
                     />
                     <CardContent>
                       <Typography
@@ -157,9 +158,10 @@ const ProjectsAlt = () => {
                         color="textSecondary"
                         component="p"
                       >
-                        Venue: {item.venue} <br />
-                        Time: {item.time} <br />
-                        Link : <a href={item.link} target="_blank">Link</a>
+                        Project Lead: {item.venue} <br />
+                        Github Link : <a href={item.link} target="_blank">Link</a>
+                        <br />
+                        <br />
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -195,15 +197,13 @@ const ProjectsAlt = () => {
         >
           <Fade in={open}>
             <div className={classes.paperModal}>
-              <h2 id="transition-modal-title">
-                Know More
-              </h2>
               <p id="transition-modal-description">
-                <ol>
-                  {key != null ? events[key].topics.map(item => (<li>{item.name}</li>)) : ""}
-                </ol>
-                <br />
+              <h5>Project Description:</h5>
                 {key != null ? events[key].info : ""}
+                <br />
+                <h5>Members:</h5>
+                  {key != null ? events[key].topics.map(item => (<li><span><i class="fas fa-long-arrow-alt-right"/> {item.name}</span></li>)) : ""}
+                
               </p>
             </div>
           </Fade>

@@ -195,14 +195,11 @@ const EventsAlt = () => {
         >
           <Fade in={open}>
             <div className={classes.paperModal}>
-              <h2 id="transition-modal-title">
-                Know More
-              </h2>
               <p id="transition-modal-description">
-                <ol>
-                  {key != null ? events[key].topics.map(item => (<li>{item.name}</li>)) : ""}
-                </ol>
+              <h5>Topics Covered:</h5>
+                  {key != null ? events[key].topics.map(item => (<li><span><i class="fas fa-long-arrow-alt-right"/> {item.name}</span></li>)) : ""}
                 <br />
+                <h5>Description:</h5>
                 {key != null ? events[key].info : ""}
               </p>
             </div>
