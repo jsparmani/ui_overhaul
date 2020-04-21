@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { CssBaseline, Container } from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,9 +11,10 @@ import image2 from "../assets/undraw_progressive_app_m9ms.svg";
 import iotImage from "../assets/undraw_Firmware_jw6u.svg";
 import softwareImage from "../assets/undraw_programming_2svr.svg";
 import mlImage from "../assets/undraw_Growing_qwt2.svg";
-import blockchainImage from '../assets/undraw_digital_currency_qpak.svg'
+import blockchainImage from '../assets/undraw_digital_currency_qpak.svg';
+import axios from 'axios';
 
-
+// axios.defaults.baseURL = "https://dsctiet.pythonanywhere.com/api";
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -62,6 +63,15 @@ const useStyles = makeStyles((theme) => ({
   
 const Team = () => {
     const classes = useStyles();
+    const[team,setTeam] = useState([]);
+    useEffect(() => {
+     const fetchData = async () =>{
+      const res= await axios.get('https://dsctiet.pythonanywhere.com/api/team/');
+      setTeam(res.data);
+      console.log(team);
+     }
+     fetchData();
+    }, [])
     return (
         <Fragment>
           <CssBaseline />
