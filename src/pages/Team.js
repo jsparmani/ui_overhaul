@@ -14,7 +14,7 @@ import mlImage from "../assets/undraw_Growing_qwt2.svg";
 import blockchainImage from '../assets/undraw_digital_currency_qpak.svg';
 import axios from 'axios';
 
-// axios.defaults.baseURL = "https://dsctiet.pythonanywhere.com/api";
+axios.defaults.baseURL = "https://dsctiet.pythonanywhere.com/api";
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -63,15 +63,346 @@ const useStyles = makeStyles((theme) => ({
   
 const Team = () => {
     const classes = useStyles();
-    const[team,setTeam] = useState([]);
+    const[team,setTeam] = useState([{
+			members: [],
+			heads: []
+    }]);
+    const[loading,setLoading] = useState(true); 
     useEffect(() => {
      const fetchData = async () =>{
-      const res= await axios.get('https://dsctiet.pythonanywhere.com/api/team/');
+      const res= await axios.get('/team/');
       setTeam(res.data);
+      setLoading(false);
       console.log(team);
      }
      fetchData();
-    }, [])
+    
+    },[])
+    const webMembers = [];
+		const webHeads = [];
+		const mlMembers = [];
+    const mlHeads = [];
+    const blockchainMembers = [];
+    const blockchainHeads = [];
+    const iotMembers = [];
+    const iotHeads = [];
+    const softwareMembers = [];
+    const softwareHeads = [];
+    const webMembersMobile = [];
+		const webHeadsMobile = [];
+		const mlMembersMobile = [];
+    const mlHeadsMobile = [];
+    const blockchainMembersMobile = [];
+    const blockchainHeadsMobile = [];
+    const iotMembersMobile = [];
+    const iotHeadsMobile = [];
+    const softwareMembersMobile = [];
+    const softwareHeadsMobile = [];
+
+
+    if (!loading) {
+
+      // Web and App team
+			for (const item of team[0].members) {
+
+				if (!loading) {
+
+					webMembers.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+
+            >
+            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h5>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : 'Developer'}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // Machine Learning Team
+      for (const item of team[3].members) {
+
+				if (!loading) {
+
+					mlMembers.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h5>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // Blockchain Team
+      for (const item of team[5].members) {
+
+				if (!loading) {
+
+					blockchainMembers.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h5>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // IOT Team
+      for (const item of team[1].members) {
+
+				if (!loading) {
+
+					iotMembers.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h5>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      //Software Team
+      for (const item of team[2].members) {
+
+				if (!loading) {
+
+					softwareMembers.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h5>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // Web and App Team Mobile
+      for (const item of team[0].members) {
+
+				if (!loading) {
+
+					webMembersMobile.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h6>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // Machine Learning Team Mobile
+      for (const item of team[3].members) {
+
+				if (!loading) {
+
+					mlMembersMobile.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h6>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // Blockchain Team Mobile
+      for (const item of team[5].members) {
+
+				if (!loading) {
+
+					blockchainMembersMobile.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h6>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // IOT Team Mobile
+      for (const item of team[1].members) {
+
+				if (!loading) {
+
+					iotMembersMobile.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h6>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+      // Software Team Mobile
+      for (const item of team[2].members) {
+
+				if (!loading) {
+
+					softwareMembersMobile.push(
+						<Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={4}
+                xl={4}
+                style={{}}
+            >
+            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
+            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{item.name.length>16 ? item.name.slice(0,16) : item.name}</h6>
+            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>{item.role ? item.role : "Developer"}</h6>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={item.linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={item.twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            </span>
+            </div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={item.name} src={item.image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+            </Paper>
+            </Grid>
+					)
+				}
+      }
+    }
     return (
         <Fragment>
           <CssBaseline />
@@ -196,6 +527,7 @@ const Team = () => {
             </Grid>
           </Grid>
           </Hidden>
+          <Hidden mdDown>
           <Grid container spacing={2} className={classes.grid} style={{height:'100px'}}>
             <Grid
                 item
@@ -211,6 +543,24 @@ const Team = () => {
                         </Typography>
                  </Grid>
           </Grid>
+          </Hidden>
+          <Hidden mdUp>
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px', paddingTop:'10px'}}>
+            <Grid
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+                xl={12}
+                style={{ }}
+            >
+            <Typography variant="h3" style={{ fontWeight: "bold", textAlign:'center' }}>
+             Web and App Team
+                        </Typography>
+                 </Grid>
+          </Grid>  
+          </Hidden>
           <Hidden mdDown>
           <Grid container spacing={2} className={classes.grid} style={{height:'100px'}}>
           <Grid
@@ -223,15 +573,15 @@ const Team = () => {
                 style={{paddingLeft:'250px'}}
             >
             <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jaskeerat Singh</h5>
+            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{loading ? " ": team[0].heads[0].name.slice(0,15)}</h5>
             <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={loading ? " ": team[0].heads[0].linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[0].github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[0].medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[0].twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
             </span>
             </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jaskeerat Singh" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={loading ? " ": team[0].heads[0].name.slice(0,15)} src={loading ? " ": team[0].heads[0].image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
             </Paper>
             </Grid>
             <Grid
@@ -244,15 +594,15 @@ const Team = () => {
                 style={{paddingLeft:'80px'}}
             >
             <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Soumya Swaraj</h5>
+            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{loading ? " ": team[0].heads[1].name}</h5>
             <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={loading ? " ": team[0].heads[1].linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[1].github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[1].medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[1].twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
             </span>
             </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Soumya Swaraj" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={loading ? " ": team[0].heads[1].name} src={loading ? " ": team[0].heads[1].image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
             </Paper>
             </Grid>  
           </Grid>
@@ -268,15 +618,15 @@ const Team = () => {
                 xl={4}
             >
             <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jaskeerat Singh</h6>
+            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{loading ? " ": team[0].heads[0].name.slice(0,15)}</h6>
             <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={loading ? " ": team[0].heads[0].linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[0].github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[0].medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[0].twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
             </span>
             </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jaskeerat Singh" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={loading ? " ": team[0].heads[0].name.slice(0,15)} src={loading ? " ": team[0].heads[0].image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
             </Paper>
             </Grid>
             <Grid
@@ -288,15 +638,15 @@ const Team = () => {
                 xl={4}
             >
             <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Soumya Swaraj</h6>
+            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>{loading ? " ": team[0].heads[1].name}</h6>
             <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
+            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href={loading ? " ": team[0].heads[1].linkedin_url} style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[1].github_url} style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[1].medium_url} style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
+            <a href={loading ? " ": team[0].heads[1].twitter_url} style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
             </span>
             </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Soumya Swaraj" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
+           <div style={{paddingBottom:'100px'}}><Avatar alt={loading ? " ": team[0].heads[1].name} src={loading ? " ": team[0].heads[1].image} className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
             </Paper>
             </Grid>  
           </Grid>
@@ -317,143 +667,17 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'50px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.grid} style={{height: 'auto',paddingTop:'50px'}}>
+            {webMembers}
             </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'auto'}}>
+            {webMembersMobile}
             </Grid>
             </Hidden>
             <Hidden mdDown>
-            <Grid container spacing={2} className={classes.grid} style={{height:'150px',paddingTop:'130px'}}>
+            <Grid container spacing={2} className={classes.grid} style={{height:'150px',paddingTop:'50px'}}>
             <Grid
                 item
                 xs={12}
@@ -470,7 +694,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px', paddingTop:'10px'}}>
             <Grid
                 item
                 xs={12}
@@ -478,7 +702,7 @@ const Team = () => {
                 md={12}
                 lg={12}
                 xl={12}
-                style={{ paddingTop: "350px", }}
+                style={{ }}
             >
             <Typography variant="h3" style={{ fontWeight: "bold", textAlign:'center' }}>
              IOT Team
@@ -487,7 +711,7 @@ const Team = () => {
           </Grid> 
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'50px'}}>
+          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'0px'}}>
           <Grid
                 item
                 xs={12}
@@ -533,7 +757,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'300px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'00px'}}>
           <Grid
                 item
                 xs={12}
@@ -592,279 +816,17 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'90px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-          </Hidden>
-          <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'180px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.grid} style={{height:'auto', paddingTop:'90px'}}>
+            {iotMembers}
             </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'300px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-            </Hidden>
-            <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'450px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'auto', paddingTop:'10px'}}>
+              {iotMembersMobile}
             </Grid>
             </Hidden>
             <Hidden mdDown>
-            <Grid container spacing={2} className={classes.grid} style={{height:'180px', paddingTop:'180px'}}>
+            <Grid container spacing={2} className={classes.grid} style={{height:'180px', paddingTop:'50px'}}>
             <Grid
                 item
                 xs={12}
@@ -881,7 +843,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px', paddingTop:'10px'}}>
             <Grid
                 item
                 xs={12}
@@ -889,7 +851,7 @@ const Team = () => {
                 md={12}
                 lg={12}
                 xl={12}
-                style={{ paddingTop: "460px", }}
+                style={{ }}
             >
             <Typography variant="h3" style={{ fontWeight: "bold", textAlign:'center' }}>
              Software Team
@@ -898,7 +860,7 @@ const Team = () => {
           </Grid> 
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'90px'}}>
+          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'0px'}}>
           <Grid
                 item
                 xs={12}
@@ -944,7 +906,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'410px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'10px'}}>
           <Grid
                 item
                 xs={12}
@@ -1003,279 +965,17 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'100px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-          </Hidden>
-          <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'180px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.grid} style={{height:'auto', paddingTop:'100px'}}>
+            {softwareMembers}
             </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'300px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-            </Hidden>
-            <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'450px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'auto', paddingTop:'10px'}}>
+            {softwareMembersMobile}
             </Grid>
             </Hidden>
             <Hidden mdDown>
-            <Grid container spacing={2} className={classes.grid} style={{paddingTop: "180px",height:'180px'}}>
+            <Grid container spacing={2} className={classes.grid} style={{paddingTop: "50px",height:'180px'}}>
             <Grid
                 item
                 xs={12}
@@ -1292,7 +992,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px', paddingTop:'10px'}}>
             <Grid
                 item
                 xs={12}
@@ -1300,7 +1000,7 @@ const Team = () => {
                 md={12}
                 lg={12}
                 xl={12}
-                style={{ paddingTop: "460px", }}
+                style={{ }}
             >
             <Typography variant="h3" style={{ fontWeight: "bold", textAlign:'center' }}>
              Machine Learning Team
@@ -1309,7 +1009,7 @@ const Team = () => {
           </Grid> 
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'90px'}}>
+          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'10px'}}>
           <Grid
                 item
                 xs={12}
@@ -1355,7 +1055,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'460px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{}}>
           <Grid
                 item
                 xs={12}
@@ -1414,279 +1114,17 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'100px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-          </Hidden>
-          <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'180px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.grid} style={{height:'auto',paddingTop:'100px'}}>
+            {mlMembers}
             </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'300px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-            </Hidden>
-            <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'450px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'auto', paddingTop:'10px'}}>
+            {mlMembersMobile}
             </Grid>
             </Hidden>
             <Hidden mdDown>
-            <Grid container spacing={2} className={classes.grid} style={{paddingTop: "180px",height:'180px'}}>
+            <Grid container spacing={2} className={classes.grid} style={{paddingTop:'50px',height:'180px'}}>
             <Grid
                 item
                 xs={12}
@@ -1703,7 +1141,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'120px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'10px',height:'120px'}}>
             <Grid
                 item
                 xs={12}
@@ -1711,7 +1149,7 @@ const Team = () => {
                 md={12}
                 lg={12}
                 xl={12}
-                style={{ paddingTop: "460px", }}
+                style={{}}
             >
             <Typography variant="h3" style={{ fontWeight: "bold", textAlign:'center' }}>
              Blockchain Team
@@ -1720,7 +1158,7 @@ const Team = () => {
           </Grid> 
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'90px'}}>
+          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'0px'}}>
           <Grid
                 item
                 xs={12}
@@ -1766,7 +1204,7 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'410px'}}>
+          <Grid container spacing={2} className={classes.gridMobile} style={{paddingTop:'0px'}}>
           <Grid
                 item
                 xs={12}
@@ -1825,277 +1263,15 @@ const Team = () => {
           </Grid>
           </Hidden>
           <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'100px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-          </Hidden>
-          <Hidden mdDown>
-          <Grid container spacing={2} className={classes.grid} style={{height:'100px', paddingTop:'180px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{width:'340px', height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h5 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h5>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
+          <Grid container spacing={2} className={classes.grid} style={{height:'auto', paddingTop:'100px'}}>
+            {blockchainMembers}
+          </Grid>
           </Hidden>
           <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'300px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
+          <Grid container spacing={2} className={classes.gridMobile} style={{height:'auto', paddingTop:'00px'}}>
+            {blockchainMembersMobile}
             </Grid>
             </Hidden>
-            <Hidden mdUp>
-          <Grid container spacing={2} className={classes.gridMobile} style={{height:'100px', paddingTop:'450px'}}>
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Jay Parmani</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Jay Parmani" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>
-            <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Kush Daga</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Kush Daga" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-          
-          <Grid
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={4}
-                xl={4}
-                style={{}}
-            >
-            <Paper className={classes.paper} style={{height:'130px'}} elevation={4}>
-            <div style={{ paddingBottom:'100px'}}><h6 style={{marginBottom:'-24px',marginTop:'0px',marginLeft:'110px', width:'200px',fontWeight:'bold' }}>Parth Shah</h6>
-            <h6 style={{marginBottom:'-60px',marginTop:'30px',marginLeft:'110px', width:'200px' }}>Developer</h6>
-            <div style={{marginBottom:'-85px',marginTop:'70px',marginLeft:'110px', width:'200px' }}><span><a href='#' style={{paddingRight:'8px'}}><i class="fab fa-linkedin fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-github-square fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-medium fa-2x" style={{color:'grey'}} /></a>
-            <a href='#' style={{paddingRight:'8px'}}><i class="fab fa-twitter-square fa-2x" style={{color:'grey'}} /></a>
-            </span>
-            </div>
-           <div style={{paddingBottom:'100px'}}><Avatar alt="Parth Shah" src="https://picsum.photos/seed/picsum/200/300" className={classes.large} style={{paddingBottom:'0px'}} /></div></div>
-            </Paper>
-            </Grid>  
-            </Grid>
-            </Hidden>   
           </Container>  
         </Fragment>
     )
