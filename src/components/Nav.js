@@ -67,7 +67,7 @@ const Nav = () => {
               <Link to='/events' className={classes.button}>Events</Link>
               <Link to='/resources' className={classes.button}>Resources</Link>
               <Link to='/projects' className={classes.button}>Projects</Link>
-              <Link to='/' className={classes.button}>Team</Link>
+              <Link to='/team' className={classes.button}>Team</Link>
               <Link to='/achievements' className={classes.button}>Achievements</Link>
               <Link to='/achievements' className={classes.button}>Blog</Link>
             </Toolbar>
