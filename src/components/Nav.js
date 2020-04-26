@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import clsx from "clsx";
 import {makeStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,6 +9,14 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,10 +61,59 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
+    list: {
+        width: 250,
+    },
+    fullList: {
+        width: "auto",
+    },
 }));
 
 const Nav = () => {
     const classes = useStyles();
+
+    const [sideDrawer, setSideDrawer] = React.useState(false);
+
+    const toggleDrawer = (open) => (event) => {
+        if (
+            event.type === "keydown" &&
+            (event.key === "Tab" || event.key === "Shift")
+        ) {
+            return;
+        }
+
+        setSideDrawer(open);
+    };
+
+    const list = () => (
+        <div
+            className={clsx(classes.list, {
+                [classes.fullList]: false,
+            })}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+        >
+            <List>
+                {[
+                    "Home",
+                    "Events",
+                    "Resources",
+                    "Projects",
+                    "Team",
+                    "Blog",
+                ].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>
+                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+        </div>
+    );
+
     return (
         <Fragment>
             <div className={classes.root}>
@@ -96,6 +154,7 @@ const Nav = () => {
                                 className={classes.menuButton}
                                 color="inherit"
                                 aria-label="menu"
+                                onClick={toggleDrawer(true)}
                             >
                                 <MenuIcon />
                             </IconButton>
@@ -104,6 +163,13 @@ const Nav = () => {
                             </Typography>
                         </Toolbar>
                     </AppBar>
+                    <SwipeableDrawer
+                        anchor={"left"}
+                        open={sideDrawer}
+                        onClose={toggleDrawer(false)}
+                    >
+                        {list()}
+                    </SwipeableDrawer>
                 </MobileDiv>
             </div>
         </Fragment>
