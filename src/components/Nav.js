@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appbar: {
     // alignItems: 'center',
-    // justifyContent: 'space-around',
+  // justifyContent: 'space-around',
     // display: 'flex',
     //  margin: 'auto',
     // width: '70%',

@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Slide from "react-reveal/Slide";
-import { Container, CssBaseline } from "@material-ui/core";
+import { Container, CssBaseline, Hidden } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Events from "../assets/events.svg";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   rootCard: {
-    maxWidth: 400,
+    maxWidth: 350,
     height: 400,
   },
   media: {
@@ -86,13 +86,13 @@ const ResourcesAlt = () => {
   return (
     <Fragment>
       <CssBaseline />
-      <Container fixed>
+      <Container fixed >
         <Grid container spacing={2} className={classes.grid}>
           <Grid
             item
             xs={12}
-            sm={6}
-            md={3}
+            sm={12}
+            md={6}
             lg={6}
             xl={6}
             style={{ paddingTop: "100px" }}
@@ -115,27 +115,29 @@ const ResourcesAlt = () => {
               deserunt mollit anim id est laborum.
                         </Typography>
           </Grid>
+          <Hidden smDown>
           <Grid
             item
-            xs={12}
-            sm={6}
-            md={3}
+            xs={false}
+            sm={false}
+            md={6}
             lg={6}
             xl={6}
-            style={{ paddingTop: "100px" }}
+            style={{ paddingTop: "120px", paddingLeft:'150px' }}
           >
             <img
               src={Events}
               alt="event_img"
-              height="50%"
-              width="120%"
+              height="60%"
+              width="100%"
             />
           </Grid>
+          </Hidden>
         </Grid>
         <Grid container spacing={2}>
 
           {events.map((item, index) => (
-            <Grid item xs={12} sm={6} md={3} lg={4} xl={4} style={{}} key={item.id}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={4} style={{}} key={item.id}>
               <Slide bottom>
                 <Card className={classes.rootCard}>
                   <CardActionArea>
