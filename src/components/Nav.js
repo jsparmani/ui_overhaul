@@ -1,18 +1,24 @@
-import React, {Fragment} from "react";
+import React from "react";
+import clsx from "clsx";
 import {makeStyles} from "@material-ui/core/styles";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import {Link} from "react-router-dom";
-import styled from "styled-components";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        // overflowX: 'auto',
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -20,105 +26,84 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
-    appbar: {
-        // alignItems: 'center',
-        // justifyContent: 'space-around',
-        // display: 'flex',
-        //  margin: 'auto',
-        // width: '70%',
-        // paddingTop: '1%',
-        // paddingBottom: '1%',
-        // fontSize: '1.3em',
-        // fontWeight: '300'
+    list: {
+        width: 250,
     },
-    toolbar: {
-        display: "flex",
-        // paddingRight:'50%',
-        // paddingLeft:'20%'
-    },
-    button: {
-        justifyContent: "space-around",
-        display: "flex",
-        margin: "auto",
-        // width: '70%',
-        // paddingTop: '1%',
-        // paddingBottom: '1%',
-        fontSize: "1.5em",
-        fontWeight: "300",
-        // paddingRight:'20%',
-        textDecoration: "none",
-        color: "black",
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
+    fullList: {
+        width: "auto",
     },
 }));
 
-const Nav = () => {
+export default function TemporaryDrawer() {
     const classes = useStyles();
-    return (
-        <Fragment>
-            <div className={classes.root}>
-                <ResponsiveDiv>
-                    <AppBar
-                        position="static"
-                        color="white"
-                        className={classes.appbar}
-                    >
-                        <Toolbar className={classes.toolbar}>
-                            <Link to="/" className={classes.button}>
-                                Home
-                            </Link>
-                            <Link to="/events" className={classes.button}>
-                                Events
-                            </Link>
-                            <Link to="#" className={classes.button}>
-                                Resources
-                            </Link>
-                            <Link to="/projects" className={classes.button}>
-                                Projects
-                            </Link>
-                            <Link to="/team" className={classes.button}>
-                                Team
-                            </Link>
-                            {/* <Link to='/achievements' className={classes.button}>Achievements</Link> */}
-                            <Link to="#" className={classes.button}>
-                                Blog
-                            </Link>
-                        </Toolbar>
-                    </AppBar>
-                </ResponsiveDiv>
-                <MobileDiv>
-                    <AppBar position="static" color="white">
-                        <Toolbar>
-                            <IconButton
-                                edge="start"
-                                className={classes.menuButton}
-                                color="inherit"
-                                aria-label="menu"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="h6" className={classes.title}>
-                                DSC TIET
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                </MobileDiv>
-            </div>
-        </Fragment>
+    const [sideDrawer, setSideDrawer] = React.useState(false);
+
+    const toggleDrawer = (open) => (event) => {
+        if (
+            event.type === "keydown" &&
+            (event.key === "Tab" || event.key === "Shift")
+        ) {
+            return;
+        }
+
+        setSideDrawer(open);
+    };
+
+    const list = () => (
+        <div
+            className={clsx(classes.list, {
+                [classes.fullList]: false,
+            })}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+        >
+            <List>
+                {[
+                    "Home",
+                    "Events",
+                    "Resources",
+                    "Projects",
+                    "Team",
+                    "Blog",
+                ].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>
+                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+        </div>
     );
-};
 
-const ResponsiveDiv = styled.div`
-    @media only screen and (max-width: 1000px) {
-        display: none;
-    }
-`;
-const MobileDiv = styled.div`
-    @media only screen and (min-width: 1000px) {
-        display: none;
-    }
-`;
-
-export default Nav;
+    return (
+        <React.Fragment>
+            <AppBar position="sticky" color="transparent">
+                <Toolbar>
+                    <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="menu"
+                        onClick={toggleDrawer(true)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" className={classes.title}>
+                        Developer Student Club TIET
+                    </Typography>
+                    <Button color="inherit">Follow Us</Button>
+                </Toolbar>
+            </AppBar>
+            <SwipeableDrawer
+                anchor={"left"}
+                open={sideDrawer}
+                onClose={toggleDrawer(false)}
+            >
+                {list()}
+            </SwipeableDrawer>
+        </React.Fragment>
+    );
+}
