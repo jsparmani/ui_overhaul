@@ -14,7 +14,7 @@ import Team from './pages/Team';
 const App = () => {
   return (
     <Router>
-      <div className="App">
+      <div className="App" >
         <Nav />
         <Switch>
           <Route exact path='/' component={HomeAlt} />
